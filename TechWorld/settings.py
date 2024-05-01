@@ -79,6 +79,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'TechWorld.wsgi.application'
 
 
