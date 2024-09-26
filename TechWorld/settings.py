@@ -86,23 +86,23 @@ WSGI_APPLICATION = 'TechWorld.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("NAME"),
-        'USER': os.getenv("USER"),
-        'PASSWORD': os.getenv("PASSWORD"),
-        'HOST': os.getenv("HOST"),
-        'PORT': os.getenv("PORT"),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.getenv("NAME"),
+#         'USER': os.getenv("USER"),
+#         'PASSWORD': os.getenv("PASSWORD"),
+#         'HOST': os.getenv("HOST"),
+#         'PORT': os.getenv("PORT"),
+#     }
+# }
 
 
 # Password validation
@@ -166,8 +166,16 @@ SWAGGER_SETTINGS = {
 }
 
 DJOSER = {
+    "PASSWORD_RESET_CONFIRM_URL": "http://localhost:8000/auth/user/reset_password_confirm/{uid}/{token}/",
+    'ACTIVATION_URL': 'http://localhost:8000/auth/activate/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'http://localhost:8000/auth/username/reset/confirm/{uid}/{token}',
+
+    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'SERIALIZERS': {
-        'user_create': "userapp.serializers.MyUserCreateSerializer"
+        'user_create': "customuser.serializers.MyUserCreateSerializer"
     }
 }
 
@@ -188,3 +196,13 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
 }
+
+# email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_SSL = True
+EMAIL_USE_TSL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.getenv("EMAIL")
+EMAIL_HOST_PASSWORD = os.getenv("PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("EMAIL")
