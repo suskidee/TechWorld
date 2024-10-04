@@ -1,0 +1,8 @@
+to transfer data from one database to another in django:
+in the origin database:
+python manage.py dumpdata --output=data.json
+
+after this step, ADD THE NEW DATABASE TO SETTINGS AND MAKE MIGRATIONS.
+run:
+python manage.py loaddata data.json
+done.
