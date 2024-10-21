@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["134.209.21.134", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -177,9 +177,9 @@ SWAGGER_SETTINGS = {
 }
 
 DJOSER = {
-    "PASSWORD_RESET_CONFIRM_URL": "http://localhost:8000/auth/user/reset_password_confirm/{uid}/{token}/",
-    'ACTIVATION_URL': 'http://localhost:8000/auth/activate/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'http://localhost:8000/auth/username/reset/confirm/{uid}/{token}',
+    "PASSWORD_RESET_CONFIRM_URL": "http://134.209.21.134:8080/auth/user/reset_password_confirm/{uid}/{token}/",
+    'ACTIVATION_URL': 'http://134.209.21.134:8080/auth/activate/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'http://134.209.21.134:8080/auth/username/reset/confirm/{uid}/{token}',
 
     'SEND_ACTIVATION_EMAIL': True,
     'SEND_CONFIRMATION_EMAIL': True,
